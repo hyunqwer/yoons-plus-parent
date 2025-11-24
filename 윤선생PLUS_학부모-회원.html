@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윤선생 플러스 - 우리 아이 영어, 한 단계 더 성장</title>
+    <style>
+        /* ===== CSS VARIABLES & RESET ===== */
+        :root {
+            --yoon-blue: #2563eb;
+            --mint-point: #10b981;
+            --white: #ffffff;
+            --dark-navy: #1f2937;
+            --sub-gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --gradient-blue: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc;
+            color: var(--dark-navy);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; font-family: inherit; }
+
+        /* ===== LAYOUT CONTAINER ===== */
+        .page-container {
+            max-width: 390px;
+            margin: 0 auto;
+            background: var(--white);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+        /* ===== CARD SYSTEM ===== */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        /* ===== BUTTON SYSTEM ===== */
+        .btn-primary {
+            background: var(--mint-point);
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--yoon-blue);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero {
+            background: var(--white);
+            color: var(--yoon-blue);
+            padding: 12px 32px;
+            border-radius: 22px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ===== HEADER GNB ===== */
+        .gnb {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--white);
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--yoon-blue);
+        }
+
+        .gnb-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .gnb-menu a {
+            font-size: 14px;
+            color: var(--sub-gray);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .gnb-menu a.active {
+            color: var(--yoon-blue);
+            font-weight: 600;
+        }
+
+        .gnb-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--yoon-blue);
+            border-radius: 1px;
+        }
+
+        .auth-section .login-btn {
+            color: var(--yoon-blue);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .profile-section {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--mint-point), #06d6a0);
+        }
+
+        /* ===== HERO BANNER ===== */
+        .hero {
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 40px 16px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        /* ===== TEACHER SECTION ===== */
+        .section {
+            padding: 24px 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--sub-gray);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .teacher-card {
+            position: relative;
+        }
+
+        .teacher-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .teacher-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--yoon-blue);
+            font-weight: 700;
+        }
+
+        .teacher-details h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .teacher-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--sub-gray);
+        }
+
+        .rating {
+            color: #fbbf24;
+        }
+
+        .teacher-desc {
+            font-size: 14px;
+            color: var(--sub-gray);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        /* Guest mode overlay */
+        .guest-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .guest-mode .teacher-card {
+            filter: blur(1px);
+        }
+
+        .guest-mode .guest-overlay {
+            display: flex;
+        }
+
+        .guest-overlay-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark-navy);
+        }
+
+        /* ===== CATEGORY TABS ===== */
+        .category-tabs {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--sub-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--mint-point);
+            color: var(--white);
+        }
+
+        /* ===== SERVICE CARDS ===== */
+        .service-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .service-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--yoon-blue);
+        }
+
+        .service-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-navy);
+        }
+
+        .service-time {
+            font-size: 14px;
+            color: var(--sub-gray);
+            margin-bottom: 12px;
+        }
+
+        .service-badges {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--mint-point);
+            color: var(--white);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .service-desc {
+            font-size: 14px;
+            color: var(--dark-navy);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* ===== AI REPORT PREVIEW ===== */
+        .ai-report {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--mint-point), #22c55e);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+
+        .circular-progress {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .donut-chart {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(var(--mint-point) 0deg 331.2deg, #e5e7eb 331.2deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .donut-chart::before {
+            content: '';
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .donut-value {
+            position: relative;
+            z-index: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--mint-point);
+        }
+
+        .donut-label {
+            text-align: center;
+            font-size: 14px;
+            color: var(--sub-gray);
+            margin-top: 8px;
+        }
+
+        .keyword-tags {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .keyword-tag {
+            background: #e0f2f7;
+            color: var(--yoon-blue);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* ===== REVIEWS SECTION ===== */
+        .reviews-grid {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .review-card {
+            min-width: 280px;
+            flex-shrink: 0;
+        }
+
+        .review-stars {
+            color: #fbbf24;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .review-meta {
+            font-size: 12px;
+            color: var(--sub-gray);
+        }
+
+        /* ===== GUEST CTA SECTION ===== */
+        .guest-cta {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 24px 16px;
+            text-align: center;
+            margin: 24px 16px;
+            border-radius: 16px;
+        }
+
+        .guest-cta h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--yoon-blue);
+        }
+
+        .guest-cta p {
+            font-size: 12px;
+            color: var(--sub-gray);
+            margin-bottom: 16px;
+        }
+
+        /* ===== BOTTOM NAVIGATION ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 390px;
+            width: 100%;
+            background: var(--white);
+            display: flex;
+            border-top: 1px solid #e5e7eb;
+            height: 64px;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--sub-gray);
+            font-size: 11px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: var(--mint-point);
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            background: currentColor;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ===== MODAL SYSTEM ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 16px;
+            max-width: 320px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal h3 {
+            margin-bottom: 12px;
+            color: var(--yoon-blue);
+            font-size: 18px;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+            color: var(--sub-gray);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .modal-btn.primary {
+            background: var(--mint-point);
+            color: var(--white);
+            border: none;
+        }
+
+        .modal-btn.secondary {
+            background: var(--white);
+            color: var(--mint-point);
+            border: 1px solid var(--mint-point);
+        }
+
+        /* ===== RESPONSIVE & ANIMATIONS ===== */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logged-in .guest-overlay,
+        .logged-in .guest-cta {
+            display: none !important;
+        }
+
+        .logged-in .profile-section {
+            display: flex !important;
+        }
+
+        .logged-in .login-btn {
+            display: none !important;
+        }
+
+        .logged-in .teacher-card {
+            filter: none !important;
+        }
+
+        /* Hide scrollbar */
+        .reviews-grid::-webkit-scrollbar {
+            height: 4px;
+        }
+        .reviews-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .reviews-grid::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="guest-mode">
+    <div class="page-container">
+        <!-- GNB Header -->
+        <header class="gnb">
+            <div class="logo">윤선생 플러스</div>
+            <nav class="gnb-menu">
+                <a href="#" class="active">서비스</a>
+                <a href="#">리포트</a>
+                <a href="#">마이</a>
+            </nav>
+            <div class="auth-section">
+                <button class="login-btn" onclick="handleLogin()">로그인</button>
+                <div class="profile-section">
+                    <div class="profile-img"></div>
+                    <span class="profile-name">김학부모님</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Banner -->
+        <section class="hero">
+            <h1>우리 아이 영어, 한 단계 더 성장</h1>
+            <p>담당 선생님이 직접 추천하는 추가 영어관리</p>
+            <button class="btn-hero" onclick="scrollToServices()">서비스 보기</button>
+        </section>
+
+        <!-- Teacher Section -->
+        <section class="section container">
+            <h2 class="section-title">담당 선생님</h2>
+            <p class="section-subtitle">아이를 잘 아는 선생님이 추천해드려요</p>
+            
+            <div class="card teacher-card">
+                <div class="teacher-info">
+                    <div class="teacher-avatar">👩‍🏫</div>
+                    <div class="teacher-details">
+                        <h3 id="teacher-name">김영희 선생님</h3>
+                        <div class="teacher-meta">
+                            <span class="rating">⭐ 4.9</span>
+                            <span>리포트 제출률 98%</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="teacher-desc">개별 맞춤 관리로 우리 아이 실력을 한 단계 끌어올려드려요</p>
+                <button class="btn-secondary" onclick="showTeacherProfile()">교사 프로필 보기</button>
+                
+                <div class="guest-overlay">
+                    <div class="guest-overlay-text">
+                        로그인하면 우리 아이<br>담당 선생님과 연결됩니다
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Category & List -->
+        <section class="section container" id="services">
+            <h2 class="section-title">교사 추천 서비스</h2>
+            <p class="section-subtitle">담당 선생님이 직접 추천하는 맞춤형 프로그램</p>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="switchCategory('additional')">추가관리</button>
+                <button class="tab-btn" onclick="switchCategory('exam')">내신대비</button>
+                <button class="tab-btn" onclick="switchCategory('special')">전문특강</button>
+            </div>
+
+            <!-- Service List -->
+            <div class="service-list" id="service-list">
+                <!-- JavaScript로 동적 생성 -->
+            </div>
+        </section>
+
+        <!-- AI Report Preview -->
+        <section class="section container">
+            <h2 class="section-title">AI 리포트 미리보기</h2>
+            <p class="section-subtitle">한 눈에 확인되는 성장 데이터</p>
+            
+            <div class="card ai-report">
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>학습 성취도</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="circular-progress">
+                    <div class="donut-chart">
+                        <span class="donut-value">92%</span>
+                    </div>
+                </div>
+                <div class="donut-label">미션 수행률</div>
+
+                <div class="keyword-tags">
+                    <span class="keyword-tag">현재완료</span>
+                    <span class="keyword-tag">관계대명사</span>
+                    <span class="keyword-tag">가정법</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="section container">
+            <h2 class="section-title">학부모 후기</h2>
+            <p class="section-subtitle">실제 이용 학부모님들의 생생한 후기</p>
+            
+            <div class="reviews-grid">
+                <div class="card review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">선생님이 직접 추천해주시니까 믿고 신청했어요. 아이가 확실히 달라졌네요!</p>
+                    <p class="review-meta">초4 / 추가관리 플러스</p>
+                </div>
+                <div class="card review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">리포트가 정말 자세해서 아이 실력을 정확히 알 수 있어요. 추천합니다.</p>
+                    <p class="review-meta">중1 / 내신대비 특강</p>
+                </div>
+                <div class="card review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">가격 대비 정말 만족해요. 담당 선생님이 계속 관리해주셔서 좋아요.</p>
+                    <p class="review-meta">초6 / 전문특강</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guest CTA Section -->
+        <div class="guest-cta">
+            <h3>로그인하면 우리 아이 담당 선생님과 연결됩니다</h3>
+            <p>윤선생 계정 연동 · 신규 등록 없음</p>
+            <button class="btn-primary" onclick="handleLogin()">로그인</button>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <div class="nav-icon">🏠</div>
+                <span>홈</span>
+            </a>
+            <a href="#" class="nav-item">
+                <div class="nav-icon">📚</div>
+                <span>서비스</span>
+            </a>
+            <a href="#" class="nav-item">
+                <div class="nav-icon">📊</div>
+                <span>리포트</span>
+            </a>
+            <a href="#" class="nav-item">
+                <div class="nav-icon">👤</div>
+                <span>마이</span>
+            </a>
+        </nav>
+
+        <!-- Modals -->
+        <div class="modal" id="login-modal">
+            <div class="modal-content">
+                <h3>결제 전 로그인이 필요해요</h3>
+                <p>윤선생 계정으로 간편하게 로그인하고<br>담당 선생님과 연결해보세요</p>
+                <div class="modal-buttons">
+                    <button class="modal-btn secondary" onclick="closeModal()">취소</button>
+                    <button class="modal-btn primary" onclick="doLogin()">로그인</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="teacher-modal">
+            <div class="modal-content">
+                <h3>담당 선생님과 자동 연결</h3>
+                <p>로그인하시면 우리 아이의<br>실제 담당 선생님 정보를 확인하실 수 있어요</p>
+                <div class="modal-buttons">
+                    <button class="modal-btn secondary" onclick="closeModal()">취소</button>
+                    <button class="modal-btn primary" onclick="doLogin()">로그인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== 전역 상태 관리 =====
+        let isLoggedIn = false;
+        let currentCategory = 'additional';
+
+        // ===== 서비스 데이터 =====
+        const serviceData = {
+            additional: [
+                {
+                    name: '추가관리 플러스',
+                    time: '주 1회 30분 × 4주',
+                    price: '88,000원',
+                    badges: ['AI리포트', '만족도95%', '후기우수'],
+                    desc: '집중하면 성적과 자신감이 함께 올라요'
+                },
+                {
+                    name: '집중관리 프리미엄',
+                    time: '주 2회 30분 × 4주',
+                    price: '156,000원',
+                    badges: ['1:1맞춤', 'AI리포트', '실시간피드백'],
+                    desc: '개별 맞춤으로 확실한 실력 향상을 경험해보세요'
+                },
+                {
+                    name: '기초탄탄 패키지',
+                    time: '주 1회 45분 × 6주',
+                    price: '198,000원',
+                    badges: ['기초완성', '단계별학습', 'AI리포트'],
+                    desc: '탄탄한 기초부터 차근차근 쌓아가요'
+                }
+            ],
+            exam: [
+                {
+                    name: '내신완벽 대비반',
+                    time: '주 2회 45분 × 4주',
+                    price: '176,000원',
+                    badges: ['시험대비', '족집게특강', '성적보장'],
+                    desc: '학교 시험 완벽 대비로 성적 UP!'
+                },
+                {
+                    name: '중간고사 집중반',
+                    time: '주 3회 30분 × 3주',
+                    price: '147,000원',
+                    badges: ['단기집중', '예상문제', '실전연습'],
+                    desc: '시험 직전 단기 집중으로 확실한 성과를'
+                }
+            ],
+            special: [
+                {
+                    name: '영어회화 마스터',
+                    time: '주 2회 30분 × 8주',
+                    price: '264,000원',
+                    badges: ['원어민수업', '회화집중', 'AI발음'],
+                    desc: '자신있게 말하는 영어 실력을 키워보세요'
+                },
+                {
+                    name: '문법완성 특강',
+                    time: '주 1회 60분 × 6주',
+                    price: '198,000원',
+                    badges: ['문법완성', '체계학습', '실전응용'],
+                    desc: '헷갈리는 문법, 이제 확실하게 정리해요'
+                }
+            ]
+        };
+
+        // ===== 초기화 =====
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            
+            // 프로그레스 바 애니메이션
+            setTimeout(() => {
+                document.getElementById('progress-fill').style.width = '85%';
+            }, 500);
+
+            // 페이드인 애니메이션
+            document.querySelectorAll('.card').forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 100);
+            });
+        });
+
+        // ===== 서비스 렌더링 =====
+        function renderServices() {
+            const serviceList = document.getElementById('service-list');
+            const services = serviceData[currentCategory];
+            
+            serviceList.innerHTML = services.map(service => `
+                <div class="card service-card fade-in">
+                    <div class="service-header">
+                        <h3 class="service-name">${service.name}</h3>
+                        <span class="service-price">${service.price}</span>
+                    </div>
+                    <p class="service-time">${service.time}</p>
+                    <div class="service-badges">
+                        ${service.badges.map(badge => `<span class="badge">${badge}</span>`).join('')}
+                    </div>
+                    <p class="service-desc">${service.desc}</p>
+                    <button class="btn-primary" onclick="handleServiceApply('${service.name}')">신청하기</button>
+                </div>
+            `).join('');
+        }
+
+        // ===== 카테고리 전환 =====
+        function switchCategory(category) {
+            currentCategory = category;
+            
+            // 탭 활성화 상태 변경
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 서비스 리스트 재렌더링
+            renderServices();
+        }
+
+        // ===== 서비스 신청 처리 =====
+        function handleServiceApply(serviceName) {
+            if (!isLoggedIn) {
+                showModal('login-modal');
+            } else {
+                alert(`${serviceName} 신청이 완료되었습니다!\n담당 선생님이 곧 연락드릴 예정입니다.`);
+            }
+        }
+
+        // ===== 로그인 처리 =====
+        function handleLogin() {
+            if (!isLoggedIn) {
+                doLogin();
+            }
+        }
+
+        function doLogin() {
+            isLoggedIn = true;
+            
+            // UI 상태 변경
+            document.body.classList.remove('guest-mode');
+            document.body.classList.add('logged-in');
+            
+            // 교사 이름 업데이트
+            document.getElementById('teacher-name').textContent = '김영희 선생님 (우리 아이 담당)';
+            
+            closeModal();
+            
+            // 환영 메시지
+            setTimeout(() => {
+                alert('환영합니다! 담당 선생님과 연결되었습니다.\n맞춤형 서비스를 이용해보세요.');
+            }, 300);
+        }
+
+        // ===== 교사 프로필 보기 =====
+        function showTeacherProfile() {
+            if (!isLoggedIn) {
+                showModal('teacher-modal');
+            } else {
+                alert('교사 프로필 페이지로 이동합니다.');
+            }
+        }
+
+        // ===== 스크롤 기능 =====
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ===== 모달 관리 =====
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        // ===== 이벤트 리스너 =====
+        // 모달 외부 클릭 시 닫기
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+
+        // 하단 네비게이션 활성화
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // GNB 스크롤 효과
+        window.addEventListener('scroll', function() {
+            const gnb = document.querySelector('.gnb');
+            if (window.scrollY > 0) {
+                gnb.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                gnb.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
